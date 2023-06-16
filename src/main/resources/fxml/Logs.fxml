@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<ScrollPane fitToHeight="true" fitToWidth="true" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.petermeissner.logan.App">
+
+    <VBox alignment="CENTER">
+
+        <opaqueInsets>
+            <Insets/>
+        </opaqueInsets>
+
+        <Label
+                text="Other Content"
+                prefHeight="35.0"
+                prefWidth="221.0"
+                textAlignment="CENTER"
+                textFill="#aea3a3"
+                VBox.vgrow="ALWAYS"
+        >
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
+
+    </VBox>
+
+</ScrollPane>
