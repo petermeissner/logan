@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  * Class for storing user preferences
@@ -14,7 +16,6 @@ import java.io.IOException;
 public class PreferencesHandler {
 
     private static final Logger log = LoggerFactory.getLogger(PreferencesHandler.class);
-
 
 
     /**
@@ -33,18 +34,21 @@ public class PreferencesHandler {
     }
 
 
-
     /**
      * Lods a set of preferences from disk
      *
      * @param filePath file path as string
      * @return a Prefernce Object
-     *
      * @throws IOException
-     *
      */
     public static Preferences load(String filePath) throws IOException {
         log.info("Loading preferences - start");
+
+        // check if file exists
+        if ( Files.notExists(Path.of(filePath)) ) {
+            Preferences p = new Preferences();
+            PreferencesHandler.store(p);
+        }
 
         // read in preferences
         String settingsContent = Util.readTextFile(filePath);
@@ -73,13 +77,13 @@ public class PreferencesHandler {
         JSONObject jo = new JSONObject(s);
 
         Preferences p = new Preferences();
-       JSONArray ds = jo.getJSONArray("directories");
-       String[] da = new String[ds.length()];
-       int i = 0;
-       for ( Object d : ds){
-           da[i] = d.toString();
-           i++;
-       }
+        JSONArray ds = jo.getJSONArray("directories");
+        String[] da = new String[ds.length()];
+        int i = 0;
+        for (Object d : ds) {
+            da[i] = d.toString();
+            i++;
+        }
         p.directories = da;
         p.regex = (String) jo.get("regex");
 

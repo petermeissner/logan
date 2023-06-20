@@ -26,12 +26,15 @@ public class App extends Application {
     private final ContentHandler contentHandler = new ContentHandler(this);
 
     // Preferences / Options
-    Preferences preferences = new Preferences();
+    Preferences preferences = PreferencesHandler.load("settings.json") ;
 
     // Placeholder node within App.fxml that can be used to
     // switch content in and out
     @FXML
     public ScrollPane mainSceneContent;
+
+    public App() throws IOException {
+    }
 
     // Startup
     @Override
