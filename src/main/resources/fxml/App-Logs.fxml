@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+
+<SplitPane dividerPositions="0.11661073825503356" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+           minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0"
+           xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+
+   <TextArea prefHeight="200.0" prefWidth="200.0" promptText="regex" text=".*" wrapText="true"/>
+
+   <ScrollPane prefHeight="200.0" prefWidth="200.0">
+      <TextArea editable="false" prefHeight="346.0" prefWidth="598.0" promptText="logs"/>
+   </ScrollPane>
+
+</SplitPane>

@@ -6,8 +6,7 @@
 <?import javafx.scene.text.*?>
 
 <ScrollPane fitToHeight="true" fitToWidth="true" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.petermeissner.logan.App">
-
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.petermeissner.logan.DummyController">
     <VBox alignment="CENTER">
 
         <opaqueInsets>
@@ -28,5 +27,4 @@
         </Label>
 
     </VBox>
-
 </ScrollPane>

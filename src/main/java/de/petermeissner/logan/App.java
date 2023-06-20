@@ -1,10 +1,11 @@
 package de.petermeissner.logan;
 
-import de.petermeissner.util;
+import de.petermeissner.logan.misc.ContentHandler;
+import de.petermeissner.logan.misc.Preferences;
+import de.petermeissner.logan.misc.PreferencesHandler;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
@@ -18,16 +19,26 @@ import java.io.IOException;
 
 public class App extends Application {
 
-    @FXML
-    ScrollPane mainSceneContent;
+    // Logger
     Logger logger = LoggerFactory.getLogger(App.class);
 
+    // Content Handler
+    private final ContentHandler contentHandler = new ContentHandler(this);
 
+    // Preferences / Options
+    Preferences preferences = new Preferences();
+
+    // Placeholder node within App.fxml that can be used to
+    // switch content in and out
+    @FXML
+    public ScrollPane mainSceneContent;
+
+    // Startup
     @Override
     public void start(Stage stage) throws IOException {
 
         // loading fxml
-        Parent startScene = this.loadFXML("/fxml/MainScene.fxml");
+        Parent startScene = contentHandler.loadFXMLtoParent("/fxml/App.fxml");
 
         // scene
         Scene scene = new Scene(startScene, Color.ALICEBLUE);
@@ -35,11 +46,8 @@ public class App extends Application {
         // setting up window
         stage.setTitle("Logan the log analyst");
         stage.setScene(scene);
-        loadLogs();
         stage.show();
     }
-
-
 
 
     /**
@@ -51,52 +59,26 @@ public class App extends Application {
     }
 
 
+    // #### PAGES # ------------------------------------------------------------
 
+    // Page: Options
+    public void loadContentOptions(ActionEvent actionEvent) throws IOException {
+        contentHandler.loadContent("App-Options", this);
+    }
 
-    /**
-     * @param fname file name without path and without file extension
-     * @return scene/nodes
-     */
-    private Parent loadFXML(String fname) throws IOException {
-        Parent parent = FXMLLoader.load(
-                util.checkNull(getClass().getResource(fname))
-        );
-        return parent;
+    // Page: Logs
+    public void loadContentLogs(ActionEvent actionEvent) throws IOException {
+        contentHandler.loadContent("App-Logs", this);
     }
 
 
-    void loadContent(String node) throws IOException {
-        logger.info("Load parameter = " + node);
 
-        // check if name or path was provided
-        boolean isPath = util.strMatches(node, ".*/.*");
-
-        // handle non path
-        if ( !isPath ) {
-            node = "/fxml/" + node + ".fxml";
-        }
-
-        logger.info("Loading = " + node);
-
-        // load fxml
-        Parent n = this.loadFXML(node);
-
-        // replace content
-        this.mainSceneContent.setContent(n);
+    // #### Global Methods
+    public void loadPreferences() throws IOException {
+       PreferencesHandler.load("settings.json") ;
     }
 
-    public void loadOptions(ActionEvent actionEvent) throws IOException {
-        loadContent("Options");
-    }
-
-    public void loadOptions() throws IOException {
-        loadContent("Options");
-    }
-
-    public void loadLogs(ActionEvent actionEvent) throws IOException {
-        loadContent("Logs");
-    }
-    public void loadLogs() throws IOException {
-        loadContent("Logs");
+    public void storePreferences() throws IOException {
+        PreferencesHandler.store(this.preferences);
     }
 }

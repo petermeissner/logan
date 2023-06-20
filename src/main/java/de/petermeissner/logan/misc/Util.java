@@ -1,8 +1,12 @@
-package de.petermeissner;
+package de.petermeissner.logan.misc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.StringJoiner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,7 +15,7 @@ import java.util.regex.Pattern;
 /**
  *
  */
-public class util {
+public class Util {
 
     /**
      * Simple convenience function to check string for regex match
@@ -128,5 +132,10 @@ public class util {
      */
     public static String formatMe(String s){
         return formatMe(s, false, false);
+    }
+
+    public static String readTextFile(String filePath) throws IOException {
+        final String s = Files.readString(Path.of(filePath), StandardCharsets.UTF_8);
+        return s;
     }
 }
