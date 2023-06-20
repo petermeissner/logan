@@ -1,7 +1,6 @@
 package de.petermeissner.logan.misc;
 
 import de.petermeissner.logan.App;
-import de.petermeissner.logan.OptionsController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import org.slf4j.Logger;
@@ -29,7 +28,7 @@ public class ContentHandler {
      * @param fname resource path or fxml name
      * @return FXMLLoader
      */
-    public FXMLLoader loadFXML(String fname) throws IOException {
+    public FXMLLoader loadFXML(String fname) {
 
         // check if name or path was provided
         boolean isPath = Util.strMatches(fname, ".*/.*");
@@ -66,7 +65,7 @@ public class ContentHandler {
         app.mainSceneContent.setContent(p);
     }
 
-    public void loadContent(String fxmlName, App app) throws IOException {
+    public void loadContent(String fxmlName, App app, AppController controller) throws IOException {
         log.info("Load parameter = " + fxmlName);
 
         // check if name or path was provided
@@ -83,7 +82,6 @@ public class ContentHandler {
         FXMLLoader loader = loadFXML(fxmlName);
 
         // set controller
-        OptionsController controller = new OptionsController();
         controller.setApp(app);
         loader.setController(controller);
         Parent root = loader.load();

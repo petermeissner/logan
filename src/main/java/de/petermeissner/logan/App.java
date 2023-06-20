@@ -66,12 +66,13 @@ public class App extends Application {
 
     // Page: Options
     public void loadContentOptions(ActionEvent actionEvent) throws IOException {
-        contentHandler.loadContent("App-Options", this);
+        OptionsController controller = new OptionsController();
+        contentHandler.loadContent("App-Options", this, controller);
     }
 
     // Page: Logs
     public void loadContentLogs(ActionEvent actionEvent) throws IOException {
-        contentHandler.loadContent("App-Logs", this);
+        contentHandler.loadContent("App-Logs");
     }
 
 

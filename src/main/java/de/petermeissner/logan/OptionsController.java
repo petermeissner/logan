@@ -1,5 +1,6 @@
 package de.petermeissner.logan;
 
+import de.petermeissner.logan.misc.AppController;
 import de.petermeissner.logan.misc.PreferencesHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -10,13 +11,9 @@ import java.io.IOException;
 /**
  * Controller class for Options.fxml
  */
-public class OptionsController {
+public class OptionsController extends AppController {
     public TextArea optionsText;
-    App app;
 
-    public void setApp(App app) {
-        this.app = app;
-    }
 
     @FXML
     public void initialize(){

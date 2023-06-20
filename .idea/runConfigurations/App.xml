@@ -4,7 +4,7 @@
     <module name="logan" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="de.petermeissner.logan.*" />
+        <option name="PATTERN" value="de.petermeissner.logan.misc.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>
