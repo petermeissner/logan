@@ -50,43 +50,27 @@ public class ContentHandler {
         return loader.load();
     }
 
-    public void loadContent(String sceneName) throws IOException {
-        log.info("Load parameter = " + sceneName);
 
-
-
-        log.info("Loading = " + sceneName);
-
-        // load fxml
-        FXMLLoader fxmlLoader = loadFXML(sceneName);
-        Parent p = fxmlLoader.load();
-
-        // replace content
-        app.mainSceneContent.setContent(p);
-    }
-
+    /**
+     * Load content from fxml and inserting it into app at specific content placeholder
+     *
+     * @param fxmlName   FXML name/fileName to load
+     * @param app        Application object to add content to
+     * @param controller controller class to initialize and set as controller of fxml
+     * @throws IOException
+     */
     public void loadContent(String fxmlName, App app, AppController controller) throws IOException {
-        log.info("Load parameter = " + fxmlName);
-
-        // check if name or path was provided
-        if (Util.strMatches(fxmlName, ".*/.*")) {
-            // if path: do nothing
-        } else {
-            // else: create path
-            fxmlName = "/fxml/" + fxmlName + ".fxml";
-        }
-
-        log.info("Loading = " + fxmlName);
 
         // fxml loader
-        FXMLLoader loader = loadFXML(fxmlName);
+        FXMLLoader fxmlLoader = loadFXML(fxmlName);
 
         // set controller
         controller.setApp(app);
-        loader.setController(controller);
-        Parent root = loader.load();
+        fxmlLoader.setController(controller);
+        Parent fxmlInstance = fxmlLoader.load();
 
         // replace content
-        app.mainSceneContent.setContent(root);
+        app.root.getChildren().removeAll();
+        app.root.getChildren().set(0, fxmlInstance);
     }
 }

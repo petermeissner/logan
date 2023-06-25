@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
@@ -18,6 +19,9 @@ import java.io.IOException;
 
 
 public class App extends Application {
+
+    @FXML
+    public StackPane root;
 
     // Logger
     Logger logger = LoggerFactory.getLogger(App.class);
@@ -72,7 +76,8 @@ public class App extends Application {
 
     // Page: Logs
     public void loadContentLogs(ActionEvent actionEvent) throws IOException {
-        contentHandler.loadContent("App-Logs");
+        DummyController controller = new DummyController();
+        contentHandler.loadContent("App-Logs", this, controller);
     }
 
 

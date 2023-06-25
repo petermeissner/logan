@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
 
-<SplitPane dividerPositions="0.11661073825503356" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-           minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0"
-           xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
 
-   <TextArea prefHeight="200.0" prefWidth="200.0" promptText="regex" text=".*" wrapText="true"/>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.text.Font?>
+<?import javafx.stage.Screen?>
+<SplitPane
+        dividerPositions="0.03"
+        prefWidth="${screen.visualBounds.width}"
+        prefHeight="${screen.visualBounds.height}"
+        orientation="VERTICAL"
+        xmlns="http://javafx.com/javafx/17.0.2-ea"
+        xmlns:fx="http://javafx.com/fxml/1"
+>
+   <fx:define>
+      <Screen fx:factory="getPrimary" fx:id="screen" />
+   </fx:define>
 
-   <ScrollPane prefHeight="200.0" prefWidth="200.0">
-      <TextArea editable="false" prefHeight="346.0" prefWidth="598.0" promptText="logs"/>
-   </ScrollPane>
+   <Label text="Logs"><font><Font size="16.0" /></font></Label>
+
+   <TextArea
+           promptText="regex"
+           text=".*"
+           wrapText="true"
+           minHeight="50"
+           maxHeight="50"
+   />
+
+      <TextArea
+           editable="false"
+           promptText="logs"
+      />
 
 </SplitPane>
