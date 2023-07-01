@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.stage.*?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.text.Font?>
-<?import javafx.stage.Screen?>
 <SplitPane
-        dividerPositions="0.03"
         prefWidth="${screen.visualBounds.width}"
         prefHeight="${screen.visualBounds.height}"
+        dividerPositions="0.03, 0.5"
         orientation="VERTICAL"
         xmlns="http://javafx.com/javafx/17.0.2-ea"
         xmlns:fx="http://javafx.com/fxml/1"
 >
-   <fx:define>
-      <Screen fx:factory="getPrimary" fx:id="screen" />
-   </fx:define>
 
-   <Label text="Logs"><font><Font size="16.0" /></font></Label>
+    <fx:define>
+        <Screen fx:factory="getPrimary" fx:id="screen"/>
+    </fx:define>
 
-   <TextArea
-           promptText="regex"
-           text=".*"
-           wrapText="true"
-           minHeight="50"
-           maxHeight="50"
-   />
+    <Label text="Logs">
+        <font>
+            <Font size="16.0"/>
+        </font>
+    </Label>
 
-      <TextArea
-           editable="false"
-           promptText="logs"
-      />
+    <HBox alignment="CENTER" fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+          minWidth="-Infinity" spacing="10.0">
+        <TextArea maxHeight="50" minHeight="50" promptText="regex" text=".*" wrapText="true"/>
+        <Button text="Filter"/>
+    </HBox>
+
+    <TextArea editable="false" promptText="logs"/>
 
 </SplitPane>
